@@ -33,6 +33,9 @@ public abstract class Tweak {
 		Soluction soluction2 = new Soluction(soluction.getSolution().length, Soluction.min, Soluction.max);
 		soluction2.setSoluction(copySolution);
 		
+		soluction2.setChangedPosition(randomPosition);
+		soluction2.setChangedValue(val);
+		
 		return soluction2;
 	}
 	

@@ -8,8 +8,8 @@ public class HillClimbing extends Function{
 	private Soluction soluction;
 	private int numAvaliation;
 	
-	public HillClimbing(int numAvaliation, int size, double min, double max){
-		this.soluction = new Soluction(size, min, max);
+	public HillClimbing(int numAvaliation, int tWeakSize, double min, double max){
+		this.soluction = new Soluction(tWeakSize, min, max);
 		this.numAvaliation = numAvaliation;
 	}
 	

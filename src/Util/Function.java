@@ -16,6 +16,18 @@ public abstract class Function {
 	}
 	
 	/**2.1.2 - F2: Schwefel’s Problem 2.21 **/
+	public double f212(Soluction soluction){
+		double result = 0;
+		
+		for(int i = 0; i < soluction.getSolution().length; i++){
+			if(Math.abs(soluction.getSolution()[i]) > result)
+				result = Math.abs(soluction.getSolution()[i]);
+		}
+		
+		soluction.setResult(result);
+		
+		return result;
+	}
 	
 	
 	/**2.2.1 - F3: Shifted Rosenbrock’s Function **/

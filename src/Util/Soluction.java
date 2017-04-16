@@ -8,6 +8,9 @@ public class Soluction extends Tweak{
 	
 	private int lastPosition;
 	
+	private int changedPosition;
+	private double changedValue;
+	
 	private double result;
 	
 	public Soluction(int size, double min, double max){
@@ -19,7 +22,18 @@ public class Soluction extends Tweak{
 			double value = (Math.random() * max) + min;
 			this.soluction[i] = value;
 		}
-	}	
+	}
+	
+	public Soluction clone(){						
+		Soluction clone = new Soluction(this.soluction.length, Soluction.min, Soluction.max);
+		clone.setSoluction(this.soluction);
+		clone.setLastPosition(this.lastPosition);
+		clone.setResult(this.result);
+		clone.setChangedPosition(this.changedPosition);
+		clone.setChangedValue(this.changedValue);
+		
+		return clone;
+	}
 	
 	public double[] getSolution(){
 		return this.soluction;
@@ -43,6 +57,22 @@ public class Soluction extends Tweak{
 
 	public void setLastPosition(int lastPosition) {
 		this.lastPosition = lastPosition;
+	}
+
+	public int getChangedPosition() {
+		return changedPosition;
+	}
+
+	public void setChangedPosition(int changedPosition) {
+		this.changedPosition = changedPosition;
+	}
+
+	public double getChangedValue() {
+		return changedValue;
+	}
+
+	public void setChangedValue(double changedValue) {
+		this.changedValue = changedValue;
 	}
 	
 }
