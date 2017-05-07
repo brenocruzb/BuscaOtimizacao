@@ -29,7 +29,7 @@ public class HillClimbing extends Function{
 	}
 	
 	private double quality(Soluction soluction){
-		return this.f222(soluction);
+		return this.f211(soluction);
 	}
 	
 }

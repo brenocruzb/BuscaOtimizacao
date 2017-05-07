@@ -1,12 +1,13 @@
 import Climbing.AscentHillClimbing;
 import Climbing.HillClimbing;
+import Gentic.Genetic;
 import Tabu.Tabu;
 import Util.Soluction;
 
 public class Main {
 
 	public static void main(String[] args) {
-		int neighbors = 1;
+		int neighbors = 100;
 		int numAvaliation = 50000 / neighbors;
 		int tWeakSize = 50;
 		double min = -100;
@@ -19,7 +20,8 @@ public class Main {
 //			
 //			HillClimbing meta = new HillClimbing(numAvaliation, tWeakSize, min, max);
 //			AscentHillClimbing meta = new AscentHillClimbing(numAvaliation, neighbors, tWeakSize, min, max);
-			Tabu meta = new Tabu(listTabuSize, numAvaliation, neighbors, tWeakSize, min, max);
+//			Tabu meta = new Tabu(listTabuSize, numAvaliation, neighbors, tWeakSize, min, max);
+			Genetic meta = new Genetic(neighbors, numAvaliation, tWeakSize, min, max);
 //			
 //			===========================================================
 			
