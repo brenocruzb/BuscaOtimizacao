@@ -121,6 +121,29 @@ public class Genetic extends Function{
 			return p1;
 		
 		return p2;
+		
+//		===========================
+//		Roleta
+		
+		
+//		double total = 0;
+//		for(Soluction pi : p){
+//			total += pi.getResult();
+//		}
+//		
+//		
+//		double current = 0;
+//		double randomValue = (Math.random() * (total + 1));
+//		
+//		for(int i = 0; i < p.size(); i++){
+//			current += p.get(i).getResult();
+//			if(current >= randomValue){
+//				return p.get(i);
+//			}
+//		}
+//		
+//		
+//		return null;
 	}
 
 	private double accessFitness(Soluction pi) {
