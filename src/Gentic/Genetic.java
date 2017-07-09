@@ -4,20 +4,22 @@ import java.util.ArrayList;
 
 import Util.Function;
 import Util.Soluction;
-import Util.Util;
 
 public class Genetic extends Function{
 	
 	private int numAvaliation, tWeakSize, popSize;	
-	private double min, max; 	
+	private double min, max; 
+	private double[] o;
 
-	public Genetic(int popsize, int numAvaliation, int tWeakSize, double min, double max){
+	public Genetic(int popsize, int numAvaliation, int tWeakSize, double min, double max, double[]o){
 		this.numAvaliation = numAvaliation;
 		this.tWeakSize = tWeakSize;
 		this.min = min;
 		this.max = max;
 		
 		this.popSize = popsize;
+		
+		this.o = o;
 	}
 	
 	public Soluction execute(){									
@@ -32,7 +34,7 @@ public class Genetic extends Function{
 		for(int i = 0; i < this.numAvaliation; i++){
 			//Parte 1
 			for(Soluction pi : p){
-				accessFitness(pi);
+				accessFitness(pi, this.o);
 				
 				if(best == null || pi.getResult() < best.getResult()){
 					best = pi.clone();
@@ -65,25 +67,27 @@ public class Genetic extends Function{
 		// Método de multação. Retorna a própria solução cb multacionada
 		// Bit-Flip Mutation
 		
-		byte[] cbByte = Util.toByteArray(cb.getSolution());
+		return Soluction.tWeak3(cb);
 		
-		double p = 1 / cbByte.length;
-		
-		for(int i = 0; i < cbByte.length; i++){
-			if(p >= Math.random()){
-				cbByte[i] = (byte) ~cbByte[i];
-			}
-		}
-		
-		double[] cbDouble = Util.toDoubleArray(cbByte);
-		cb.setSoluction(cbDouble);
-		
-		return cb;
+//		byte[] cbByte = Util.toByteArray(cb.getSolution());
+//		
+//		double p = 1 / cbByte.length;
+//		
+//		for(int i = 0; i < cbByte.length; i++){
+//			if(p >= Math.random()){
+//				cbByte[i] = (byte) ~cbByte[i];
+//			}
+//		}
+//		
+//		double[] cbDouble = Util.toDoubleArray(cbByte);
+//		cb.setSoluction(cbDouble);
+//		
+//		return cb;
 	}
 
 	private Soluction[] crossover(Soluction clone, Soluction clone2) {
 		// Cruzamento entre pais - retorna duas novas solução decorrente do cruzamento
-		//Uniform crossover
+		// Uniform crossover
 		
 		for(int i = 0; i < clone.getSolution().length; i++){
 			boolean change = Math.random() > 0.5;
@@ -117,7 +121,7 @@ public class Genetic extends Function{
 		Soluction p1 = p.get(randomPosition1);
 		Soluction p2 = p.get(randomPosition2);
 		
-		if(p1.getResult() > p2.getResult())
+		if(p1.getResult() < p2.getResult())
 			return p1;
 		
 		return p2;
@@ -146,8 +150,8 @@ public class Genetic extends Function{
 //		return null;
 	}
 
-	private double accessFitness(Soluction pi) {
+	private double accessFitness(Soluction pi, double[] o) {
 		//Setar na solução passada por parâmetro em getResult o valor do fitness 
-		return this.f222(pi);
+		return this.f221(pi, o);
 	}
 }

@@ -1,6 +1,7 @@
 package Util;
 
 import java.util.Arrays;
+import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Tweak {
 	
@@ -8,7 +9,7 @@ public abstract class Tweak {
 	public static Soluction tWeak(Soluction soluction){
 		
 		int randomPosition = (int) (Math.random() * soluction.getSolution().length);
-		double randomValue = (Math.random() * Soluction.max) + Soluction.min;
+		double randomValue = ThreadLocalRandom.current().nextDouble(Soluction.min, Soluction.max + 1);
 		double[] copySolution = Arrays.copyOf(soluction.getSolution(), soluction.getSolution().length); 
 		
 		copySolution[randomPosition] = randomValue;

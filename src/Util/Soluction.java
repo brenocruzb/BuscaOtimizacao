@@ -1,6 +1,7 @@
 package Util;
 
 import java.util.Arrays;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Soluction extends Tweak{
 	private double[] soluction;
@@ -19,7 +20,8 @@ public class Soluction extends Tweak{
 		Soluction.max = max;
 		
 		for(int i = 0; i < size; i++){
-			double value = (Math.random() * max) + min;
+			double value = ThreadLocalRandom.current().nextDouble(min, max + 1);
+//			double value = (Math.random() * max) + min;
 			this.soluction[i] = value;
 		}
 	}
@@ -73,6 +75,53 @@ public class Soluction extends Tweak{
 
 	public void setChangedValue(double changedValue) {
 		this.changedValue = changedValue;
+	}
+	
+	public static void main(String[] args) {
+		int tWeakSize = 50;
+		int min = -100;
+		int max = 100;
+		
+		Soluction s1 = new Soluction(tWeakSize, min, max);
+		s1.setLastPosition(1);
+		s1.setResult(2);
+		s1.setChangedPosition(3);
+		s1.setChangedValue(4);		
+		System.out.println(Arrays.toString(s1.getSolution()));
+		System.out.println(s1.getLastPosition());
+		System.out.println(s1.getResult());
+		System.out.println(s1.getChangedPosition());
+		System.out.println(s1.getChangedValue());
+		System.out.println("");
+		
+		Soluction s2 = s1.clone();
+		s2.setResult(-100);
+		System.out.println(Arrays.toString(s2.getSolution()));
+		System.out.println(s2.getLastPosition());
+		System.out.println(s2.getResult());
+		System.out.println(s2.getChangedPosition());
+		System.out.println(s2.getChangedValue());
+		System.out.println("");
+		
+		s1 = new Soluction(tWeakSize, min, max);
+		s1.setLastPosition(10);
+		s1.setResult(20);
+		s1.setChangedPosition(30);
+		s1.setChangedValue(40);
+		
+		
+		System.out.println(Arrays.toString(s1.getSolution()));
+		System.out.println(s1.getLastPosition());
+		System.out.println(s1.getResult());
+		System.out.println(s1.getChangedPosition());
+		System.out.println(s1.getChangedValue());
+		System.out.println("");
+		System.out.println(Arrays.toString(s2.getSolution()));
+		System.out.println(s2.getLastPosition());
+		System.out.println(s2.getResult());
+		System.out.println(s2.getChangedPosition());
+		System.out.println(s2.getChangedValue());
+		System.out.println("");
 	}
 	
 }
